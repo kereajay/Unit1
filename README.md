@@ -1,12 +1,59 @@
-# React + Vite
+# 🎓 Student Feedback System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application for collecting and managing course feedback from students. Built using **React** for the frontend and integrates with a backend API for storing and retrieving feedback.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 👨‍🎓 Student & 👩‍💼 Admin login/signup
+- 🏠 Home page with user-based UI
+- 📝 Submit Feedback (Students only)
+- 📋 View All Feedbacks (Admins only)
+- 🔐 Protected routes based on user roles
+- 📦 Context API for global user state
+- 🌐 API integration using `axios`
+- 🔔 Toast notifications with `react-toastify`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📁 Pages & Components
+
+| Page           | Description                                                                 |
+|----------------|-----------------------------------------------------------------------------|
+| `Login`        | Users (Student/Admin) can login using credentials                          |
+| `Signup`       | New users can register based on their role                                 |
+| `Home`         | Welcomes the logged-in user; shows buttons based on their role             |
+| `FeedbackForm` | Allows students to submit feedback with fields like Rating and Comments    |
+| `AllFeedbacks` | Admin-only page showing all submitted feedback                             |
+
+---
+
+## 🧰 Tech Stack
+
+- ⚛️ **React** `^19.1.0`
+- 🌐 **react-router-dom** `^7.6.0` — for routing
+- 🎉 **react-toastify** `^11.0.5` — for toasts & alerts
+- 🧠 **Context API** — for global user management (login state, role, etc.)
+
+---
+
+## 🔐 User Roles
+### 🧑‍🎓 Student
+- Can Sign Up / Log In
+
+- Submit Feedback
+
+- Can view only limited options
+
+### 👨‍💼 Admin
+- Can Sign Up / Log In
+
+- View all feedback submissions
+
+- Access to admin-specific pages
+
+
+---
+
+#### 👨‍💻 Developed by [Ajay](https://portfolio-sandy-iota-37.vercel.app/)
