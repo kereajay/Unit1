@@ -1,8 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../Context/UserContext";
+import { useEffect } from "react";
 
 const Home = () => {
   const { currentuser, setCurrentuser } = useUser();
+  const navigate=useNavigate();
+  useEffect(()=>{
+    if(!currentuser){
+      navigate("/login")
+    }
+
+  },[navigate,currentuser])
 
   return (
     <div className="min-h-screen bg-blue-50 flex flex-col justify-center items-center px-4 py-10">

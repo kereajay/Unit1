@@ -1,7 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useUser } from "../Context/UserContext";
 
 function FeedbackForm() {
+    const { currentuser, setCurrentuser } = useUser();
+
+  const navigate=useNavigate();
+  useEffect(()=>{
+    if(!currentuser){
+      navigate("/login")
+    }
+
+  },[navigate,currentuser])
   const [formdata, setFormdata] = useState({
     Studentname: "",
     Course: "",
@@ -14,30 +25,39 @@ function FeedbackForm() {
     setFormdata({ ...formdata, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-       const res=await fetch("http://localhost:4500/unit1/api/v1/AddFeedback",{
-         withCredntials: true,
-        credentials: "include",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formdata),
-
-       })
-       const data=await res.json();
-       console.log(data);
-       if(data.success){
-        toast.success(`Student ${data.Feedback.Studentname}'s form submited successfully`)
-       }
+    try {
+      const res = await fetch(
+        "https://unit1backend.onrender.com/unit1/api/v1/AddFeedback",
+        {
+          withCredntials: true,
+          credentials: "include",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formdata),
+        }
+      );
+      const data = await res.json();
+      console.log(data);
+      if (data.success) {
+        toast.success(
+          `Student ${data.Feedback.Studentname}'s form submited successfully`
+        );
+        setFormdata({
+          Studentname: "",
+          Course: "",
+          Instructor: "",
+          Rating: "",
+          Comment: "",
+        });
+      }
+    } catch (err) {
+      toast.error(err.message);
+      console.log(err.message);
     }
-    catch(err){
-        toast.error(err.message)
-        console.log(err.message)
-    }
-    
   };
 
   return (

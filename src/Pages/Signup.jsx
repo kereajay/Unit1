@@ -24,7 +24,7 @@ function Signup() {
     }
     try {
       const res = await fetch(
-        "http://localhost:4500/unit1/api/v1/student/signup",
+        "https://unit1backend.onrender.com/unit1/api/v1/student/signup",
         {
           withCredntials: true,
           credentials: "include",

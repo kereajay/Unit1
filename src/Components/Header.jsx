@@ -14,7 +14,7 @@ const Header = () => {
 
   const handlelogout = async () => {
     try {
-      const res = await fetch("http://localhost:4500/unit1/api/v1/student/logout", {
+      const res = await fetch("https://unit1backend.onrender.com/unit1/api/v1/student/logout", {
         method: "GET",
         credentials: "include",
         headers: {

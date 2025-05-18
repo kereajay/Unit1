@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function DetailedFeedback() {
+    const { currentuser, setCurrentuser } = useUser();
+
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const navigate=useNavigate();
+  useEffect(()=>{
+    if(!currentuser){
+      navigate("/login")
+    }
+
+  },[navigate,currentuser])
 
   useEffect(() => {
     const fetchdata = async () => {
       try {
         const res = await fetch(
-          `http://localhost:4500/unit1/api/v1/GetAFeedback/${id}`,
+          `https://unit1backend.onrender.com/unit1/api/v1/GetAFeedback/${id}`,
           {
             credentials: "include",
             method: "GET",

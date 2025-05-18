@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../Context/UserContext";
 
 function AllFeedbacks() {
+    const { currentuser, setCurrentuser } = useUser();
+  
   const [feedbacks, setFeedbacks] = useState([]);
   const navigate=useNavigate();
+  
+  useEffect(()=>{
+    if(!currentuser){
+      navigate("/login")
+    }
+
+  },[navigate,currentuser])
 
   useEffect(() => {
     const fetchdata = async () => {
       try {
         const res = await fetch(
-          "http://localhost:4500/unit1/api/v1/GetAllFeedback",
+          "https://unit1backend.onrender.com/unit1/api/v1/GetAllFeedback",
           {
             credentials: "include",  
             method: "GET",
